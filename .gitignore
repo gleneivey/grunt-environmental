@@ -1,8 +1,10 @@
 # Logs
 logs
 *.log
+npm-debug.log
 
 # Runtime data
+tmp
 pids
 *.pid
 *.seed
@@ -20,9 +22,13 @@ coverage
 build/Release
 
 # Dependency directory
-# Commenting this out is preferred by some people, see
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
 
-# Users Environment Variables
-.lock-wscript
+# Configuration directory
+# default directory for per-environment configuration shell scripts used
+# by the environmental package
+envs
+
+# Editor cruft
+.idea
+*~
