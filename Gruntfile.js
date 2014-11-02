@@ -35,7 +35,6 @@ module.exports = function(grunt) {
       tests: ["test/*_test.js"]
     }
   });
-grunt.loadTasks("tasks");
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks("grunt-contrib-jshint");

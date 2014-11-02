@@ -9,5 +9,5 @@ module.exports = function (grunt) {
     }
   });
   grunt.loadTasks(path.join(__dirname, "..", "..", "..", "tasks"));
-  grunt.registerTask("test-environmental", ["environmental:badTarget"]);
+  grunt.registerTask("test-environmental", ["environmental:badTarget", "printenv"]);
 };

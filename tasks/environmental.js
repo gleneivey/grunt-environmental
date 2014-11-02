@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   grunt.registerTask(
       "environmental",
       "Load process.env from environmental-style shell scripts for subsequent grunt tasks.",
-      function environmentalTaskFunction(target, unused) {
+      function environmentalTaskFunction(target) {
         var options = this.options(),
             done = this.async(),
             scriptPath = options.envsPath || "./envs",

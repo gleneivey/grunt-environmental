@@ -22,7 +22,7 @@ with this line of JavaScript:
 grunt.loadNpmTasks('grunt-environmental');
 ```
 
-## The "environmental" task
+## The "environmental" Task
 
 This task is intended to make environment variables configured using
 the conventions of the
@@ -63,6 +63,13 @@ grunt.registerTask("start", "start the server in the development environment",
 With this configuration, the `test` task will be run with the environment
 variables set by the script `./envs/test.sh` and the `start` task will
 be run with the environment established by `./envs/development.sh`.
+
+
+## Bonus Task
+
+This package also contains a Grunt task named "printenv", equivalent
+to the \*nix `printenv(1)` command.  It's used by the unit tests to sample
+Grunt's environment before and after the primary task executes.
 
 
 ## Contributing
