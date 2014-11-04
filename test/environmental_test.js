@@ -77,7 +77,7 @@ exports.environmental = {
   },
 
   testFailsIfNoScriptForTarget: function (test) {
-    test.expect(3);
+    test.expect(4);
 
     grunt.util.spawn({
       grunt: true,
@@ -94,6 +94,7 @@ exports.environmental = {
       test.equal(output.stdout.indexOf('Running "printenv" task'), -1,
           "Should not have run the task following the errored task"
       );
+      test.notEqual(code, 0, "Should return a non-zero status code to the shell");
 
       test.done();
     });

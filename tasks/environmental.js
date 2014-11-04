@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 scriptName + " ; printenv'";
 
         if (!fs.existsSync(scriptName)) {
-          grunt.log.error("Can't find a script to execute at '" + scriptName + "'.  Failing.");
+          grunt.fatal("Can't find a script to execute at '" + scriptName + "'.  Failing.", 10);
           return false;
         }
 
