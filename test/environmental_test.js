@@ -39,7 +39,7 @@ exports.environmental = {
       if (taskResults.length === 4) {
         test.equal(taskResults[1].indexOf("NODE_APP_PREFIX"), -1,
             "NODE_APP_PREFIX shouldn't be in the environment before code runs");
-        // data from test/fixture/envs/development.sh
+        // data from test/fixture/test_envs/development.sh
         test.notEqual(taskResults[3].indexOf("NODE_APP_PREFIX=ENV_TEST_DEV"), -1,
             "NODE_APP_PREFIX should be ENV_TEST_DEV");
         test.notEqual(taskResults[3].indexOf("ENV_TEST_DEV_INFO=development"), -1,
@@ -65,7 +65,7 @@ exports.environmental = {
       if (taskResults.length === 4) {
         test.equal(taskResults[1].indexOf("NODE_APP_PREFIX"), -1,
             "NODE_APP_PREFIX shouldn't be in the environment before code runs");
-        // data from test/fixture/envs/production.sh
+        // data from test/fixture/test_envs/production.sh
         test.notEqual(taskResults[3].indexOf("NODE_APP_PREFIX=ENV_TEST_PROD"), -1,
             "NODE_APP_PREFIX should be ENV_TEST_PROD");
         test.notEqual(taskResults[3].indexOf("ENV_TEST_PROD_INFO=production"), -1,
@@ -113,7 +113,7 @@ exports.environmental = {
       var taskResults = assertTaskWasSuccessful(test, error, output, code);
 
       if (taskResults.length === 4) {
-        // data from test/fixture/envs/development.sh
+        // data from test/fixture/test_envs/development.sh
         test.notEqual(taskResults[3].indexOf("NODE_APP_PREFIX=ENV_TEST_DEV"), -1,
             "NODE_APP_PREFIX should be ENV_TEST_DEV");
         test.notEqual(taskResults[3].indexOf("ENV_TEST_DEV_INJECTED_A=alpha"), -1,

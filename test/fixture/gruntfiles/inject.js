@@ -4,7 +4,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     environmental: {
       options: {
-        envsPath: path.join(__dirname, "..", "envs"),
+        envsPath: path.join(__dirname, "..", "test_envs"),
         inject: {
           "add-stuff": {
             INJECTED_A: "alpha",
