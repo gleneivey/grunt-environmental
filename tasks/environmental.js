@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   grunt.registerTask(
       "environmental",
       "Load process.env from environmental-style shell scripts for subsequent grunt tasks.",
-      function environmentalTaskFunction(target) {
+      function environmentalTaskFunction(target, injectionKey) {
         var options = this.options(),
             done = this.async(),
             scriptPath = options.envsPath || "./envs",
@@ -43,6 +43,14 @@ module.exports = function (grunt) {
               var values = update.split("=");
               process.env[values[0]] = values[1];
             });
+
+            if (injectionKey) {
+              var environmentalPrefix = process.env["NODE_APP_PREFIX"] + "_",
+                  hashToInject = options.inject[injectionKey];
+              _.each(_.keys(hashToInject), function (key) {
+                process.env[environmentalPrefix + key] = hashToInject[key];
+              });
+            }
 
             done();
           });

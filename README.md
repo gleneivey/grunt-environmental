@@ -32,15 +32,17 @@ instance.
 
 ### General
 
-`environmental` uses shell scripts to establish the desired
+The `environmental` package uses shell scripts to establish the desired
 configuration, but invoking them just via `exec` has no effect on the
 environment available in the node interpreter.  This task evaluates
 the environment, executes environmental's script, re-checks the
 shell environment afterward, and then makes whatever environment
-changes the script has in node's `process.env`.
+changes the script has made to the environment it ran within to
+the environment in node's `process.env`.
 
-The `environmental` Grunt task doesn't take any configuration
-options, but if it is invoked with a target, it uses that target
+
+When the `environmental` Grunt task is invoked with a target,
+it uses that target
 as the name of the `environmental` shell script to execute.  For
 example, running the Grunt task `environmental:staging` loads
 environment variables by executing the script `./envs/staging.sh`.
@@ -50,7 +52,57 @@ task is invoked without a target name, the default is
 `development` (and an error will occur if the script
 `./envs/development.sh` can't be found).
 
-### Usage Examples
+### Configuration
+
+There are two keys that the `environmental` task looks for within
+its `options` hash in the overall Grunt configuration,
+
+* `envsPath` By default, the `environmental` task looks for
+scripts to execute within the directory `./envs`.  If this isn't
+the correct directory in your system, use `envsPath` to specify a
+string that gives the path of the directory where shell scripts
+should be found.
+
+* `inject` The `environmental` task can also insert items into node's
+environment from a hash literal in the Grunt configuration.  The hash
+of environment variables that should be injected is determined by the
+third part of the Grunt task name that is used to invoke it--that is
+the options argument name that follows the target name.  When a third
+task name component is present, the `environmental` task will look
+for an `inject` key in its options, and for the task argument as a
+key within the `inject` hash.  It will then take the entire content
+of the hash under that key and populate them into the current environment.
+The keys in each injected hash are used to create the environment
+variable names created by appending them to the value in the
+`NODE_APP_PREFIX` environment variable that should have been set
+by the executed shell script.
+
+For example, this configuration in `Gruntfile.js`
+
+```
+  grunt.initConfig({
+    environmental: {
+      options: {
+        envsPath: "deploys"),
+        inject: {
+          "greek": {
+            INJECTED_A: "alpha",
+            INJECTED_B: "omega"
+          }
+        }
+      }
+    }
+  });
+```
+
+Would set `deploys` as the name of the directory that will be used
+as the location for environmental shell scripts.  And, if `NODE_APP_PREFIX`
+is equal to `ALPHABET`, then invoking the task `environmental:test:greek`
+will load the node environment by executing `deploys/test.sh` and then
+setting the environment variables `ALPHABET_INJECTED_A` and
+`ALPHABET_INJECTED_B`.
+
+### Use in Task Registration
 
 Here are two Grunt task definitions using `grunt-environmental`:
 

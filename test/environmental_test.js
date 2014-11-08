@@ -98,5 +98,31 @@ exports.environmental = {
 
       test.done();
     });
+  },
+
+  testIncludesItemsFromInjectOptionsIntoEnvironment: function (test) {
+    test.expect(8);
+
+    grunt.util.spawn({
+      grunt: true,
+      args: [
+        '--gruntfile', path.join(__dirname, "fixture", "gruntfiles", "inject.js"),
+        "test-environmental"
+      ]
+    }, function(error, output, code) {
+      var taskResults = assertTaskWasSuccessful(test, error, output, code);
+
+      if (taskResults.length === 4) {
+        // data from test/fixture/envs/development.sh
+        test.notEqual(taskResults[3].indexOf("NODE_APP_PREFIX=ENV_TEST_DEV"), -1,
+            "NODE_APP_PREFIX should be ENV_TEST_DEV");
+        test.notEqual(taskResults[3].indexOf("ENV_TEST_DEV_INJECTED_A=alpha"), -1,
+            "ENV_TEST_DEV_INJECTED_A should be 'alpha'");
+        test.notEqual(taskResults[3].indexOf("ENV_TEST_DEV_INJECTED_B=omega"), -1,
+            "ENV_TEST_DEV_INJECTED_B should be 'omega'");
+      }
+
+      test.done();
+    });
   }
 };
