@@ -39,6 +39,9 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin environmental environment variables"
+    "gruntplugin",
+    "environmental",
+    "environment",
+    "variables"
   ]
 }
