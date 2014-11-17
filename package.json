@@ -1,6 +1,12 @@
 {
   "name": "grunt-environmental",
   "description": "Load process.env from environmental-style shell scripts for subsequent grunt tasks.",
+  "keywords": [
+    "gruntplugin",
+    "environmental",
+    "environment",
+    "variables"
+  ],
   "version": "0.1.2",
   "homepage": "https://github.com/gleneivey/grunt-environmental",
   "author": {
@@ -14,12 +20,7 @@
   "bugs": {
     "url": "https://github.com/gleneivey/grunt-environmental/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/gleneivey/grunt-environmental/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -37,11 +38,5 @@
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
-  },
-  "keywords": [
-    "gruntplugin",
-    "environmental",
-    "environment",
-    "variables"
-  ]
+  }
 }
