@@ -1,6 +1,11 @@
 # grunt-environmental
 
-> Load process.env from environmental-style shell scripts for subsequent grunt tasks.
+Load process.env from environmental-style shell scripts for subsequent grunt tasks.
+
+[![NPM version](http://badge.fury.io/js/grunt-environmental.png)](https://npmjs.org/package/grunt-environmental "View this project on NPM")
+[![Build Status](https://api.travis-ci.org/gleneivey/grunt-environmental.png?branch=master)](https://travis-ci.org/gleneivey/grunt-environmental "Check this project's build status on TravisCI")
+[![Dependency Status](https://david-dm.org/gleneivey/grunt-environmental.png?theme=shields.io)](https://david-dm.org/gleneivey/grunt-environmental)
+[![Development Dependency Status](https://david-dm.org/gleneivey/grunt-environmental/dev-status.png?theme=shields.io)](https://david-dm.org/gleneivey/grunt-environmental#info=devDependencies)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -27,7 +32,7 @@ grunt.loadNpmTasks('grunt-environmental');
 This task is intended to make environment variables configured using
 the conventions of the
 [environmental package](https://www.npmjs.org/package/environmental)
-package available to subsequent tasks run within the same Grunt
+available to subsequent tasks run within the same Grunt
 instance.
 
 ### General
@@ -36,9 +41,9 @@ The `environmental` package uses shell scripts to establish the desired
 configuration, but invoking them just via `exec` has no effect on the
 environment available in the node interpreter.  This task evaluates
 the environment, executes environmental's script, re-checks the
-shell environment afterward, and then makes whatever environment
-changes the script has made to the environment it ran within to
-the environment in node's `process.env`.
+shell environment afterward, and then the changes the script made to
+the environment it ran within, are made to the environment in node's
+`process.env`.
 
 
 When the `environmental` Grunt task is invoked with a target,
@@ -71,11 +76,13 @@ the options argument name that follows the target name.  When a third
 task name component is present, the `environmental` task will look
 for an `inject` key in its options, and for the task argument as a
 key within the `inject` hash.  It will then take the entire content
-of the hash under that key and populate them into the current environment.
-The keys in each injected hash are used to create the environment
-variable names created by appending them to the value in the
-`NODE_APP_PREFIX` environment variable that should have been set
-by the executed shell script.
+of the hash under that key and populate it into the current environment.
+
+The keys in each injected hash are used to create the injected environment
+variable names.  Complete names are created by appending the keys to the
+value in the `NODE_APP_PREFIX` environment variable.  This will not
+work correctly unless the shell script executed has, in fact, set
+`NODE_APP_PREFIX` as is `environmental`'s convention.
 
 For example, this configuration in `Gruntfile.js`
 
