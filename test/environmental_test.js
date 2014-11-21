@@ -25,7 +25,7 @@ exports.environmental = {
   },
 
   testLoadsDevelopmentEnvironmentByDefault: function (test) {
-    test.expect(8);
+    test.expect(9);
 
     grunt.util.spawn({
       grunt: true,
@@ -44,6 +44,8 @@ exports.environmental = {
             "NODE_APP_PREFIX should be ENV_TEST_DEV");
         test.notEqual(taskResults[3].indexOf("ENV_TEST_DEV_INFO=development"), -1,
             "ENV_TEST_DEV_INFO should be 'development'");
+        test.notEqual(taskResults[3].indexOf("this=that"), -1,
+            "Environment should contain complete, exact string for value containing an equal sign");
       }
 
       test.done();

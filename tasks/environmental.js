@@ -40,8 +40,8 @@ module.exports = function (grunt) {
                 updates = _.difference(updatedValues, originalValues);
 
             _.each(updates, function (update) {
-              var values = update.split("=");
-              process.env[values[0]] = values[1];
+              var matchInfo = /^([^=]+)=(.+)$/.exec(update);
+              process.env[matchInfo[1]] = matchInfo[2];
             });
 
             if (injectionKey) {
